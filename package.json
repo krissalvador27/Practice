@@ -1,0 +1,14 @@
+{
+  "name": "Practice",
+  "version": "0.0.1",
+  "description": "This is where I practice code... and where Allen Iverson doesn't.",
+  "dependencies": {
+    "mocha": "*",
+    "chai": "*"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "devDependencies": {
+  }
+}
