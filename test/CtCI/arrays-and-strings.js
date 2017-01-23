@@ -2,6 +2,8 @@ const functions = require('../../CtCI/arrays-and-strings');
 const question1 = functions.question1;
 const question2 = functions.question2;
 const question3 = functions.question3;
+const question4 = functions.question4;
+const question5 = functions.question5;
 
 const expect    = require('chai').expect;
 
@@ -9,7 +11,7 @@ describe('Now testing arrays-and-strings..', function() {
 
   // Implement an algorithm to determine if a string has all unique characters.
   // What if you cannot use additional data structures?
-  describe('Question 1: Is Unique?', function() {
+  describe('Question 1: Is Unique? ...', function() {
 
     it('isUnique should succeed for Kobe, Shaq, Lebron.', function() {
       expect(question1.isUnique('Kobe')).to.equal(true);
@@ -39,7 +41,7 @@ describe('Now testing arrays-and-strings..', function() {
 
   // Implement an algorithm to determine if a string has all unique characters.
   // What if you cannot use additional data structures?
-  describe('Question 2: Check Permutation', function() {
+  describe('Question 2: Check Permutation ...', function() {
 
     it('checkPermutation should succeed for racecar/carrace, mom/mmo, teriyaki/riyakite', function() {
       expect(question2.checkPermutation('racecar', 'carrace')).to.equal(true);
@@ -69,7 +71,7 @@ describe('Now testing arrays-and-strings..', function() {
   // Write a method to replace all spaces in a string with '%20: You may assume
   // that the string has sufficient space at the end to hold the additional
   // characters, and that you are given the "true" length of the string.
-  describe('Question 3: URLifyInPlace', function() {
+  describe('Question 3: URLifyInPlace ...', function() {
 
     it('URLifyInPlace should succeed for Mr John Smith', function() {
       expect(question3.URLifyInPlace('Mr John Smith    ', 13)).to.equal('Mr%20John%20Smith');
@@ -85,4 +87,69 @@ describe('Now testing arrays-and-strings..', function() {
 
   });
 
+  // Given a string, write a function to check if it is a permutation of a palin-drome.
+  // A palindrome is a word or phrase that is the same forwards and backwards. A
+  // permutation is a rearrangement of letters. The palindrome does not need to be
+  // limited to just dictionary words.
+  describe('Question 4: Palindrome Permutation ...', function() {
+
+    it('isPalindrome should return true for racecar', function() {
+      expect(question4.isPalindrome('racecar')).to.equal(true);
+    });
+
+    it('isPalindrome should return true for tact coa', function() {
+      expect(question4.isPalindrome('tact coa')).to.equal(true);
+    });
+
+    it('isPalindrome should return false for bbbaaac', function() {
+      expect(question4.isPalindrome('bbbaaac')).to.equal(false);
+    });
+
+    it('isPalindrome should return false for momma', function() {
+      expect(question4.isPalindrome('momma')).to.equal(false);
+    });
+
+  });
+
+  // Given a string, write a function to check if it is a permutation of a palin-drome.
+  // A palindrome is a word or phrase that is the same forwards and backwards. A
+  // permutation is a rearrangement of letters. The palindrome does not need to be
+  // limited to just dictionary words.
+  describe('Question 5: One Away ...', function() {
+
+    // Case where they're of same string
+    it('isOneAway should return true for boop, boop', function() {
+      expect(question5.isOneAway('boop', 'boop')).to.equal(true);
+    });
+
+    // Case where they're of same length, but one letter away from each other
+    it('isOneAway should return true for pale, bale', function() {
+      expect(question5.isOneAway('pale', 'bale')).to.equal(true);
+    });
+
+    // // Case where they're of same length, but one letter away from each other
+    it('isOneAway should return true for bale, bake', function() {
+      expect(question5.isOneAway('bale', 'bake')).to.equal(true);
+    });
+
+    // // Case where they're different lengths, and we need to add one letter to one of the strings
+    it('isOneAway should return true for chickens, chicken', function() {
+      expect(question5.isOneAway('chickens', 'chicken')).to.equal(true);
+    });
+
+    // Case where they're different lengths, and we need to add one letter to one of the strings
+    it('isOneAway should return true for pal, pale', function() {
+      expect(question5.isOneAway('pal', 'pale')).to.equal(true);
+    });
+
+    it('isOneAway should return false for kobe, beef', function() {
+      expect(question5.isOneAway('kobe', 'beef')).to.equal(false);
+    });
+
+    it('isOneAway should return false for beefin, beef', function() {
+      expect(question5.isOneAway('beefin', 'beef')).to.equal(false);
+    });
+
+
+  });
 });
