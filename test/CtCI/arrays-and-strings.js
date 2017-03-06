@@ -11,7 +11,7 @@ const question9 = functions.question9;
 
 const expect    = require('chai').expect;
 
-describe('Now testing arrays-and-strings..', function() {
+describe('Now testing arrays-and-strings ...', function() {
 
   // Implement an algorithm to determine if a string has all unique characters.
   // What if you cannot use additional data structures?
