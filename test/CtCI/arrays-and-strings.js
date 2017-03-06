@@ -6,6 +6,8 @@ const question4 = functions.question4;
 const question5 = functions.question5;
 const question6 = functions.question6;
 const question7 = functions.question7;
+const question8 = functions.question8;
+const question9 = functions.question9;
 
 const expect    = require('chai').expect;
 
@@ -275,6 +277,135 @@ describe('Now testing arrays-and-strings..', function() {
 
       expect(question7.rotateMatrixLessStorage([a1, b1, c1, d1, e1])).to.deep.equal([a1, b1, c1, d1, e1]);
     });
+  });
+
+  // Write an algorithm such that if an element in an MxN matrix is 0,
+  // its entire row and column are set to O.
+  describe('Question 8: Zero Matrix ...', function() {
+
+    // Basic test case 1x1
+    // [[0]]
+    it('zeroMatrix should succeed 1x1', function() {
+      expect(question8.betterZeroMatrix([[0]])).to.deep.equal([[0]]);
+    });
+
+    // Basic test case 3x1
+    // [[0, 1, 1]]
+    it('zeroMatrix should succeed 3x1', function() {
+      expect(question8.betterZeroMatrix([[0, 1, 1]])).to.deep.equal([[0, 0, 0]]);
+    });
+
+    // Basic test case 1x3
+    // [[0], [1], [1]]
+    it('zeroMatrix should succeed 1x3', function() {
+      expect(question8.betterZeroMatrix([[0], [1], [1]])).to.deep.equal([[0], [0], [0]]);
+    });
+
+    // Test case 3x3
+    // [
+    //  [0, 1, 1],
+    //  [1, 1, 1],
+    //  [1, 1, 0]
+    // ]
+    it('zeroMatrix should succeed 3x3', function() {
+      expect(question8.betterZeroMatrix([
+        [0, 1, 1],
+        [1, 1, 1],
+        [1, 1, 0]
+      ])).to.deep.equal([
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0]
+      ]);
+    });
+
+    // Test case 4x3
+    // [
+    //  [0, 1, 0, 1],
+    //  [1, 1, 1, 1],
+    //  [1, 1, 1, 1]
+    // ]
+    it('zeroMatrix should succeed 4x3 - test 1', function() {
+      expect(question8.betterZeroMatrix([
+        [0, 1, 0, 1],
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]
+      ])).to.deep.equal([
+        [0, 0, 0, 0],
+        [0, 1, 0, 1],
+        [0, 1, 0, 1]
+      ]);
+    });
+
+    // Test case 4x3
+    it('zeroMatrix should succeed 4x3 - test 2', function() {
+      expect(question8.betterZeroMatrix([
+        [0, 1, 1, 1],
+        [1, 0, 1, 1],
+        [1, 1, 0, 1]
+      ])).to.deep.equal([
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+      ]);
+    });
+
+    // Test case 4x3 all 1s
+    it('zeroMatrix should succeed 4x3 all 1s', function() {
+      expect(question8.betterZeroMatrix([
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]
+      ])).to.deep.equal([
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]
+      ]);
+    });
+
+    // Test case 4x3 all 1s
+    it('zeroMatrix should succeed 4x3 - no 0s in 1st row and 1st col', function() {
+      expect(question8.betterZeroMatrix([
+        [1, 1, 1, 1],
+        [1, 0, 1, 1],
+        [1, 1, 1, 1]
+      ])).to.deep.equal([
+        [1, 0, 1, 1],
+        [0, 0, 0, 0],
+        [1, 0, 1, 1]
+      ]);
+    });
+  });
+
+  // Assume you have a method isSubstring which checks if one word is a substring of
+  // another. Given two strings, s1 and s2, write code to check if s2 is a rotation
+  // of 51 using only one call to isSubstring
+  describe('Question 9: String Rotation ...', function() {
+
+    it('isStringRotation should succeed for erbottlewat and waterbottle', function() {
+      expect(question9.isStringRotation('erbottlewat', 'waterbottle')).to.equal(true);
+    });
+
+    it('isStringRotation should succeed for kobebryant and bryantkobe', function() {
+      expect(question9.isStringRotation('kobebryant', 'bryantkobe')).to.equal(true);
+    });
+
+    it('isStringRotation should succeed for basketball and basketball', function() {
+      expect(question9.isStringRotation('basketball', 'basketball')).to.equal(true);
+    });
+
+    it('isStringRotation should fail for dog and cat', function() {
+      expect(question9.isStringRotation('dog', 'cat')).to.equal(false);
+    });
+
+    it('isStringRotation should fail for miamiheat and detroitpistons', function() {
+      expect(question9.isStringRotation('miamiheat', 'detroitpistons')).to.equal(false);
+    });
+
+    it('isStringRotation should fail for lebronjames and lebrojamesn', function() {
+      expect(question9.isStringRotation('lebronjames', 'lebrojamesn')).to.equal(false);
+    });
+
   });
 
 });

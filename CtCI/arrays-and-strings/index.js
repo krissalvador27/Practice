@@ -6,3 +6,5 @@ exports.question4 = require('./1_4.js');
 exports.question5 = require('./1_5.js');
 exports.question6 = require('./1_6.js');
 exports.question7 = require('./1_7.js');
+exports.question8 = require('./1_8.js');
+exports.question9 = require('./1_9.js');
