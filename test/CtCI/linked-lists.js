@@ -1,6 +1,9 @@
 const functions = require('../../CtCI/linked-lists');
 const question1 = functions.question1;
 const question2 = functions.question2;
+const question3 = functions.question3;
+const question4 = functions.question4;
+const question5 = functions.question5;
 
 const expect     = require('chai').expect;
 const LinkedList = require('../../lib/linked-list');
@@ -76,6 +79,125 @@ describe('Now testing linked-lists ...', function() {
 
   });
 
+  // Delete Middle Node: Implement an algorithm to delete a node in the middle
+  // (i.e., any node but the first and last node, not necessarily the exact middle)
+  // of a singly linked list, given only access to that node.
+  describe('Question 3: Delete middle node ...', function() {
 
+    it('deleteMiddleNode should succeed for linked list a->b->c with param b', function() {
+      let linkedList = new LinkedList();
+
+      ['a', 'b', 'c'].forEach((char) => {
+        linkedList.add(char);
+      });
+
+      question3.deleteMiddleNode(linkedList.getNode('b'))
+
+      expect(linkedList.toString(' -> ')).to.equal('a -> c');
+    });
+
+    it('deleteMiddleNode should succeed for linked list a->b->c->d->e->f with param c', function() {
+      let linkedList = new LinkedList();
+
+      ['a', 'b', 'c', 'd', 'e', 'f'].forEach((char) => {
+        linkedList.add(char);
+      });
+
+      question3.deleteMiddleNode(linkedList.getNode('c'))
+
+      expect(linkedList.toString(' -> ')).to.equal('a -> b -> d -> e -> f');
+    });
+
+  });
+
+  // Partition: Write code to partition a linked list around a value x, such that
+  // all nodes less than x come before all nodes greater than or equal to x. lf x
+  // is contained within the list, the values of x only need to be after the elements
+  // less than x (see below).The partition element x can appear anywhere in the
+  // "right partition"; it does not need to appear between the left and right partitions.
+  describe('Question 4: Partition ...', function() {
+
+    it('partition should succeed for linked list 3->5->7->5->10->1->2 with various partitions', function() {
+      let linkedList = new LinkedList();
+
+      [3, 5, 7, 5, 10, 1, 2].forEach((num) => {
+        linkedList.add(num);
+      });
+
+      expect(question4.partition(linkedList, 5).toString(' -> ')).to.equal('3 -> 1 -> 2 -> 5 -> 7 -> 5 -> 10');
+      expect(question4.partition(linkedList, 1).toString(' -> ')).to.equal('3 -> 5 -> 7 -> 5 -> 10 -> 1 -> 2');
+      expect(question4.partition(linkedList, 2).toString(' -> ')).to.equal('1 -> 3 -> 5 -> 7 -> 5 -> 10 -> 2');
+      expect(question4.partition(linkedList, 10).toString(' -> ')).to.equal('3 -> 5 -> 7 -> 5 -> 1 -> 2 -> 10');
+    });
+
+  });
+
+  // Sum Lists: You have two numbers represented by a linked list, where each
+  // node contains a single digit. The digits are stored in reverse order,
+  // such that the 1's digit is at the head of the list. Write a function
+  // that adds the two numbers and returns the sum as a linked list.
+  describe('Question 5: Sum Lists ...', function() {
+
+    // 617 + 295 = 912
+    it('sumLists should succeed for (7 -> 1 -> 6) + (5 -> 9 -> 2) = 2 -> 1 -> 9', function() {
+      let linkedList = new LinkedList();
+
+      ['(', 7, 1, 6, ')', '+', '(', 5, 9, 2, ')'].forEach((item) => {
+        linkedList.add(item);
+      });
+
+      expect(question5.sumLists(linkedList).toArray().reverse().join('')).to.equal('912');
+      expect(question5.sumListsForward(linkedList).toArray().join('')).to.equal('1308');
+    });
+
+    // 1617 + 295 = 1912
+    it('sumLists should succeed for (7 -> 1 -> 6 -> 1) + (5 -> 9 -> 2) = 2 -> 1 -> 9 -> 1', function() {
+      let linkedList = new LinkedList();
+
+      ['(', 7, 1, 6, 1, ')', '+', '(', 5, 9, 2, ')'].forEach((item) => {
+        linkedList.add(item);
+      });
+
+      expect(question5.sumLists(linkedList).toArray().reverse().join('')).to.equal('1912');
+      expect(question5.sumListsForward(linkedList).toArray().join('')).to.equal('7753');
+    });
+
+    // 617 + 1295 = 1912
+    it('sumLists should succeed for (7 -> 1 -> 6 -> 1) + (5 -> 9 -> 2) = 2 -> 1 -> 9 -> 1', function() {
+      let linkedList = new LinkedList();
+
+      ['(', 7, 1, 6, ')', '+', '(', 5, 9, 2, 1, ')'].forEach((item) => {
+        linkedList.add(item);
+      });
+
+      expect(question5.sumLists(linkedList).toArray().reverse().join('')).to.equal('1912');
+      expect(question5.sumListsForward(linkedList).toArray().join('')).to.equal('6637');
+    });
+
+    // 1 + 1 = 2
+    it('sumLists should succeed for (1) + (1) = 2', function() {
+      let linkedList = new LinkedList();
+
+      ['(', 1, ')', '+', '(', 1, ')'].forEach((item) => {
+        linkedList.add(item);
+      });
+
+      expect(question5.sumLists(linkedList).toArray().reverse().join('')).to.equal('2');
+      expect(question5.sumListsForward(linkedList).toArray().join('')).to.equal('2');
+    });
+
+    // 9 + 9 = 18
+    it('sumLists should succeed for (9) + (9) = 8 -> 1', function() {
+      let linkedList = new LinkedList();
+
+      ['(', 9, ')', '+', '(', 9, ')'].forEach((item) => {
+        linkedList.add(item);
+      });
+
+      expect(question5.sumLists(linkedList).toArray().reverse().join('')).to.equal('18');
+      expect(question5.sumListsForward(linkedList).toArray().join('')).to.equal('18');
+    });
+
+  });
 
 });
