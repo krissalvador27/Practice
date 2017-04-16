@@ -14,8 +14,14 @@ exports.sumLists = function(linkedList) {
       bDigit    = aDigit;
 
   // Find first bDigit
+<<<<<<< HEAD
   while (bDigit.data !== '(')
     bDigit = bDigit.next;
+=======
+  while (bDigit.data !== '(') {
+    bDigit = bDigit.next;
+  }
+>>>>>>> 776d0b277c2cb6cda6344f9fb376e72ea606d8a1
 
   // Currently at (
   // Go next for second number's first digit
@@ -25,6 +31,7 @@ exports.sumLists = function(linkedList) {
 
   while (bDigit.data !== ')' || aDigit.data !== ')') {
     if (aDigit.data === ')') {
+<<<<<<< HEAD
       // If first linked list is at end ) character
       sumOfDigits = 0 + bDigit.data + carryOver;
       bDigit      = bDigit.next;
@@ -37,6 +44,17 @@ exports.sumLists = function(linkedList) {
       sumOfDigits = bDigit.data + aDigit.data + carryOver;
       bDigit      = bDigit.next;
       aDigit      = aDigit.next;
+=======
+      sumOfDigits = 0 + bDigit.data + carryOver;
+      bDigit = bDigit.next;
+    } else if (bDigit.data === ')') {
+      sumOfDigits = 0 + aDigit.data + carryOver;
+      aDigit = aDigit.next;
+    } else {
+      sumOfDigits = bDigit.data + aDigit.data + carryOver;
+      bDigit = bDigit.next;
+      aDigit = aDigit.next;
+>>>>>>> 776d0b277c2cb6cda6344f9fb376e72ea606d8a1
     }
 
     // Check for carryover
