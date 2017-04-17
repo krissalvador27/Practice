@@ -4,6 +4,9 @@ const question2 = functions.question2;
 const question3 = functions.question3;
 const question4 = functions.question4;
 const question5 = functions.question5;
+const question6 = functions.question6;
+const question7 = functions.question7;
+const question8 = functions.question8;
 
 const expect     = require('chai').expect;
 const LinkedList = require('../../lib/linked-list');
@@ -197,7 +200,151 @@ describe('Now testing linked-lists ...', function() {
       expect(question5.sumLists(linkedList).toArray().reverse().join('')).to.equal('18');
       expect(question5.sumListsForward(linkedList).toArray().join('')).to.equal('18');
     });
+  });
 
+  // Palindrome: Implement a function to check if a linked list is a palindrome
+  describe('Question 6: Palindrome ...', function() {
+
+    it('isPalindrome should return false for linked list aabbcc', function() {
+      let linkedList = new LinkedList();
+
+      ['a', 'a', 'b', 'b', 'c', 'c'].forEach((letter) => {
+        linkedList.add(letter);
+      });
+
+      expect(question6.isPalindrome(linkedList)).to.equal(false);
+    });
+
+    it('isPalindrome should return true for linked list aabbaa', function() {
+      let linkedList = new LinkedList();
+
+      ['a', 'a', 'b', 'b', 'a', 'a'].forEach((letter) => {
+        linkedList.add(letter);
+      });
+
+      expect(question6.isPalindrome(linkedList)).to.equal(true);
+    });
+
+  });
+
+  // Intersection: Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting node.
+  // Note that the intersection is defined based on reference, not value. That is, if the kth node of the
+  // first linked list is the exact same node (by reference) as the jth node of the second linked list,
+  // then they are intersecting.
+  // example:
+  // ( 1 ) - ( 2 ) - ( 3 ) \
+  // ( 4 ) - ( 5 ) --------- ( 6 ) - ( 7 )
+  // linked list a : 1 -> 2 -> 3 -> 6 -> 7
+  // linked list b : 4 -> 5 -> 6 -> 7
+  describe('Question 7: Intersection ...', function() {
+
+    it('getIntersection should return correct node for same length linkedlist a and b', function() {
+      let linkedList  = new LinkedList(),
+          linkedListA = new LinkedList(),
+          linkedListB = new LinkedList();
+
+      [8, 9, 10].forEach((num) => {
+        linkedList.add(num);
+      });
+
+      [1, 2, 3].forEach((num) => {
+        linkedListA.add(num)
+      });
+
+      [4, 5, 6].forEach((num) => {
+        linkedListB.add(num)
+      });
+
+      linkedListA.tail().next = linkedList.head;
+      linkedListB.tail().next = linkedList.head;
+
+      expect(question7.getIntersection(linkedListA, linkedListB)).to.equal(linkedList.getNode(8));
+    });
+
+    it('getIntersection should return correct node for different length linkedlist a and b', function() {
+      let linkedList  = new LinkedList(),
+          linkedListA = new LinkedList(),
+          linkedListB = new LinkedList();
+
+      [9, 10].forEach((num) => {
+        linkedList.add(num);
+      });
+
+      [1, 2, 3, 4, 5].forEach((num) => {
+        linkedListA.add(num)
+      });
+
+      [4, 5, 6].forEach((num) => {
+        linkedListB.add(num)
+      });
+
+      linkedListA.tail().next = linkedList.head;
+      linkedListB.tail().next = linkedList.head;
+
+      expect(question7.getIntersection(linkedListA, linkedListB)).to.equal(linkedList.getNode(9));
+    });
+
+    it('getIntersection should return null for non intersection linkedlists', function() {
+      let linkedListA = new LinkedList(),
+          linkedListB = new LinkedList();
+
+      [1, 2, 3, 4, 5].forEach((num) => {
+        linkedListA.add(num)
+      });
+
+      [4, 5, 6].forEach((num) => {
+        linkedListB.add(num)
+      });
+
+      expect(question7.getIntersection(linkedListA, linkedListB)).to.equal(null);
+    });
+
+  });
+
+  // Intersection: Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting node.
+  // Note that the intersection is defined based on reference, not value. That is, if the kth node of the
+  // first linked list is the exact same node (by reference) as the jth node of the second linked list,
+  // then they are intersecting.
+  // example:
+  // ( 1 ) - ( 2 ) - ( 3 ) \
+  // ( 4 ) - ( 5 ) --------- ( 6 ) - ( 7 )
+  // linked list a : 1 -> 2 -> 3 -> 6 -> 7
+  // linked list b : 4 -> 5 -> 6 -> 7
+  describe('Question 8: Loop Detection ...', function() {
+
+    it('loopDetector should return correct node for circular linked list', function() {
+      let linkedList  = new LinkedList();
+
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach((num) => {
+        linkedList.add(num);
+      });
+
+      linkedList.tail().next = linkedList.getNode(4);
+
+      expect(question8.loopDetector(linkedList)).to.equal(linkedList.getNode(4));
+    });
+
+    it('loopDetector should return null for non circular linked list', function() {
+      let linkedList  = new LinkedList();
+
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach((num) => {
+        linkedList.add(num);
+      });
+
+      expect(question8.loopDetector(linkedList)).to.equal(null);
+    });
+
+    it('loopDetector should return null for circular linked list where tail.next = head', function() {
+      let linkedList  = new LinkedList();
+
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach((num) => {
+        linkedList.add(num);
+      });
+
+      linkedList.tail().next = linkedList.head;
+
+      expect(question8.loopDetector(linkedList)).to.equal(linkedList.getNode(1));
+    });
   });
 
 });
